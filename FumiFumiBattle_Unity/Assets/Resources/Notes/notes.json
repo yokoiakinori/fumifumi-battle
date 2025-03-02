@@ -1,0 +1,14 @@
+[
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 1
+  },
+  {
+  "WaitSeconds": 500,
+  "SortNumber": 2
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 3
+  }
+]
