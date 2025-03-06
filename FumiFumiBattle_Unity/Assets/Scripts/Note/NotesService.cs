@@ -4,20 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.IO;
+using VContainer;
+using VContainer.Unity;
 
 namespace Note
 {
     public class NotesService
     {
+        private readonly NoteBase prefab;
+        private readonly IObjectResolver resolver;
+        private readonly Transform parentTransform;
+        
         public List<NoteBase> Notes;
         private string _dataPath;
-        public void Generate(Image noteImage)
+
+        public NotesService(NoteBase prefab, IObjectResolver resolver, Transform parentTransform)
+        {
+            this.prefab = prefab;
+            this.resolver = resolver;
+            this.parentTransform = parentTransform;
+        }
+        public void Generate()
         {
             _dataPath = Application.dataPath+"/Resources/Notes/notes.json";
             List<NoteJsonType> noteJsonType = LoadJsonData();
+            Notes = new List<NoteBase>();
             foreach (NoteJsonType noteJson in noteJsonType)
             {
-                Notes.Add(new NoteBase(noteJson.WaitSeconds, noteJson.SortNumber, noteImage));
+                NoteBase instance = resolver.Instantiate(prefab);
+                instance.waitSeconds = noteJson.WaitSeconds;
+                instance.sortNumber = noteJson.SortNumber;
+                instance.transform.SetParent(parentTransform, false);
+                Notes.Add(instance);
             }
         }
 

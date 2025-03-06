@@ -15,7 +15,7 @@ namespace Note
 
         void IStartable.Start()
         {
-            _noteScreen.setChartButton.onClick.AddListener(() => _notesService.Generate(_noteScreen.noteImage));
+            _noteScreen.setChartButton.onClick.AddListener(() => _notesService.Generate());
             _noteScreen.moveButton.onClick.AddListener(() => _notesService.Move());
         }
     }

@@ -1,22 +1,21 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Note
 {
-    public class NoteBase
+    public class NoteBase : MonoBehaviour
     {
-        public float WaitSeconds;
-        public int SortNumber;
-        public Image Image;
+        public float waitSeconds;
+        public int sortNumber;
 
-        public NoteBase(float waitSeconds, int sortNumber, Image image)
+        public NoteBase(float waitSeconds, int sortNumber)
         {
-            this.WaitSeconds = waitSeconds;
-            this.SortNumber = sortNumber;
-            this.Image = image;
-            
-            Debug.Log("NoteのWaitSeconds："+ WaitSeconds);
-            Debug.Log("NoteのSortNumber："+ SortNumber);
+            this.waitSeconds = waitSeconds;
+            this.sortNumber = sortNumber;
+             
+            Debug.Log("NoteのWaitSeconds："+ this.waitSeconds);
+            Debug.Log("NoteのSortNumber："+ this.sortNumber);
         }
     }
 }

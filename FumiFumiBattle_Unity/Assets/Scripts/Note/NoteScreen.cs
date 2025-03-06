@@ -7,5 +7,4 @@ public class NoteScreen : MonoBehaviour
 {
     public Button moveButton;
     public Button setChartButton;
-    public Image noteImage;
 }
