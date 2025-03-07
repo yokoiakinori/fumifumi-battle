@@ -32,6 +32,7 @@ namespace Note
             foreach (NoteJsonType noteJson in noteJsonType)
             {
                 NoteBase instance = resolver.Instantiate(prefab);
+                instance.transform.SetPositionAndRotation(new Vector3(550, -100, 0), Quaternion.identity); // TODO: 後で修正
                 instance.waitSeconds = noteJson.WaitSeconds;
                 instance.sortNumber = noteJson.SortNumber;
                 instance.transform.SetParent(parentTransform, false);

@@ -10,5 +10,33 @@
   {
     "WaitSeconds": 250,
     "SortNumber": 3
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 4
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 5
+  },
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 6
+  },
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 7
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 8
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 9
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 10
   }
 ]
