@@ -1,0 +1,42 @@
+[
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 1
+  },
+  {
+  "WaitSeconds": 500,
+  "SortNumber": 2
+  },
+  {
+    "WaitSeconds": 250,
+    "SortNumber": 3
+  },
+  {
+    "WaitSeconds": 500,
+    "SortNumber": 4
+  },
+  {
+    "WaitSeconds": 500,
+    "SortNumber": 5
+  },
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 6
+  },
+  {
+    "WaitSeconds": 300,
+    "SortNumber": 7
+  },
+  {
+    "WaitSeconds": 150,
+    "SortNumber": 8
+  },
+  {
+    "WaitSeconds": 150,
+    "SortNumber": 9
+  },
+  {
+    "WaitSeconds": 150,
+    "SortNumber": 10
+  }
+]
