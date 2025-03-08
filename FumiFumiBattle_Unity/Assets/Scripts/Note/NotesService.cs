@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 using VContainer;
 using VContainer.Unity;
 
@@ -49,9 +50,14 @@ namespace Note
             return JsonConvert.DeserializeObject<List<NoteJsonType>>(jsonString);
         }
 
-        public void Move()
+        public async void Move()
         {
-            
+            while (Notes.Count > 0)
+            {
+                NoteBase note = Notes.First();
+                Notes.Remove(note);
+                await note.MoveNote();
+            }
         }
     }
     
