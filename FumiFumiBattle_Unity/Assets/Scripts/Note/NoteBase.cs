@@ -40,5 +40,10 @@ namespace Note
                 transform.position = pos;
             }
         }
+
+        public void DestroyObject()
+        {
+            Destroy(gameObject);
+        }
     }
 }

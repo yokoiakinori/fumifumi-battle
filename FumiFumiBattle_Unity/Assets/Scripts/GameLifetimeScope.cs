@@ -1,3 +1,4 @@
+using GameInput;
 using Note;
 using UnityEngine;
 using VContainer;
@@ -15,10 +16,14 @@ public class GameLifetimeScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        // Note
         builder.Register<NotesService>(Lifetime.Singleton)
             .WithParameter(noteBase)
             .WithParameter(canvasTransform);
         builder.RegisterEntryPoint<NotePresenter>();
         builder.RegisterComponent(noteScreen);
+        
+        // GameInput
+        builder.Register<GameInputs>(Lifetime.Scoped);
     }
 }
