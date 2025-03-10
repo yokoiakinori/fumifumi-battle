@@ -13,13 +13,18 @@ namespace Note
         public int sortNumber;
 
         private bool _isMoving;
+        
+        private int _judgementDistance;
 
-        public NoteBase(float waitSeconds, int sortNumber)
+        public void Construct(float waitSeconds, int sortNumber)
         {
             this.waitSeconds = waitSeconds;
             this.sortNumber = sortNumber;
             _isMoving = false;
-             
+            
+            _judgementDistance = 1000;
+            
+            Debug.Log("初期judgementDistance: "+_judgementDistance);
             Debug.Log("NoteのWaitSeconds："+ this.waitSeconds);
             Debug.Log("NoteのSortNumber："+ this.sortNumber);
         }
@@ -38,12 +43,18 @@ namespace Note
                 Vector3 pos = transform.position;
                 pos.x -= 1.0f;
                 transform.position = pos;
+                _judgementDistance--;
             }
         }
 
         public void DestroyObject()
         {
             Destroy(gameObject);
+        }
+
+        public int GetJudgementDistance()
+        {
+            return _judgementDistance;
         }
     }
 }

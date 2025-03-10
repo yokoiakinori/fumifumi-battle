@@ -35,9 +35,9 @@ namespace Note
             foreach (NoteJsonType noteJson in noteJsonType)
             {
                 NoteBase instance = resolver.Instantiate(prefab);
+                instance.Construct(noteJson.WaitSeconds, noteJson.SortNumber);
+
                 instance.transform.SetPositionAndRotation(new Vector3(550, -100, 0), Quaternion.identity); // TODO: 後で修正
-                instance.waitSeconds = noteJson.WaitSeconds;
-                instance.sortNumber = noteJson.SortNumber;
                 instance.transform.SetParent(parentTransform, false);
                 _beforeNotes.Add(instance);
             }
@@ -70,6 +70,11 @@ namespace Note
             note.DestroyObject();
             _afterNotes.Remove(note);
             
+        }
+
+        public int GetFirstJudgementDistance()
+        {
+            return _afterNotes.First().GetJudgementDistance();
         }
     }
     
