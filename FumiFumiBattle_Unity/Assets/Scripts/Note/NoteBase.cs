@@ -22,7 +22,7 @@ namespace Note
             this.sortNumber = sortNumber;
             _isMoving = false;
             
-            _judgementDistance = 1000;
+            _judgementDistance = 800;
             
             Debug.Log("初期judgementDistance: "+_judgementDistance);
             Debug.Log("NoteのWaitSeconds："+ this.waitSeconds);
