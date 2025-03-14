@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NoteScreen : MonoBehaviour
+public class NoteView : MonoBehaviour
 {
     public Button moveButton;
     public Button setChartButton;

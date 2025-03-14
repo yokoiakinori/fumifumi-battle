@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: JudgeImage
+    uniqueID: 962802235
+    locked: 0
+  - name: Notes
+    uniqueID: 2391007531
+    locked: 0
+  - name: JudgeText
+    uniqueID: 2951766025
+    locked: 0

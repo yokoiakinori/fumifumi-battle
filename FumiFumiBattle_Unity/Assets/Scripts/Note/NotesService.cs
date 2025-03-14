@@ -16,7 +16,8 @@ namespace Note
         private readonly IObjectResolver resolver;
         private readonly Transform parentTransform;
         
-        public List<NoteBase> Notes;
+        private List<NoteBase> _beforeNotes;
+        private List<NoteBase> _afterNotes;
         private string _dataPath;
 
         public NotesService(NoteBase prefab, IObjectResolver resolver, Transform parentTransform)
@@ -29,15 +30,16 @@ namespace Note
         {
             _dataPath = Application.dataPath+"/Resources/Notes/notes.json";
             List<NoteJsonType> noteJsonType = LoadJsonData();
-            Notes = new List<NoteBase>();
+            _beforeNotes = new List<NoteBase>();
+            _afterNotes = new List<NoteBase>();
             foreach (NoteJsonType noteJson in noteJsonType)
             {
                 NoteBase instance = resolver.Instantiate(prefab);
+                instance.Construct(noteJson.WaitSeconds, noteJson.SortNumber);
+
                 instance.transform.SetPositionAndRotation(new Vector3(550, -100, 0), Quaternion.identity); // TODO: 後で修正
-                instance.waitSeconds = noteJson.WaitSeconds;
-                instance.sortNumber = noteJson.SortNumber;
                 instance.transform.SetParent(parentTransform, false);
-                Notes.Add(instance);
+                _beforeNotes.Add(instance);
             }
         }
 
@@ -52,12 +54,27 @@ namespace Note
 
         public async void Move()
         {
-            while (Notes.Count > 0)
+            while (_beforeNotes.Count > 0)
             {
-                NoteBase note = Notes.First();
-                Notes.Remove(note);
+                NoteBase note = _beforeNotes.First();
+                _beforeNotes.Remove(note);
+                _afterNotes.Add(note);
                 await note.MoveNote();
             }
+        }
+
+        public void DeleteNote()
+        {
+            Debug.Log("Noteの削除処理");
+            NoteBase note = _afterNotes.First();
+            note.DestroyObject();
+            _afterNotes.Remove(note);
+            
+        }
+
+        public int GetFirstJudgementDistance()
+        {
+            return _afterNotes.First().GetJudgementDistance();
         }
     }
     

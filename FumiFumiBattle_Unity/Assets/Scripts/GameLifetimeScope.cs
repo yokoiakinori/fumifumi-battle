@@ -1,5 +1,8 @@
+using GameInput;
+using Judge;
 using Note;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 using VContainerTest;
@@ -7,7 +10,9 @@ using VContainerTest;
 public class GameLifetimeScope : LifetimeScope
 {
     [SerializeField]
-    NoteScreen noteScreen;
+    NoteView noteView;
+    [SerializeField]
+    JudgeView judgeView;
     [SerializeField]
     NoteBase noteBase;
     [SerializeField]
@@ -15,10 +20,19 @@ public class GameLifetimeScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        // Note
         builder.Register<NotesService>(Lifetime.Singleton)
             .WithParameter(noteBase)
             .WithParameter(canvasTransform);
         builder.RegisterEntryPoint<NotePresenter>();
-        builder.RegisterComponent(noteScreen);
+        builder.RegisterComponent(noteView);
+        
+        // GameInput
+        builder.Register<GameInputs>(Lifetime.Scoped);
+        
+        // Judge
+        builder.Register<JudgeService>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<JudgePresenter>();
+        builder.RegisterComponent(judgeView);
     }
 }
