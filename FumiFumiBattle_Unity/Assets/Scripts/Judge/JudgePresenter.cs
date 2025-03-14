@@ -1,5 +1,6 @@
 using GameInput;
 using Note;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 
@@ -9,10 +10,12 @@ namespace Judge
     {
         readonly GameInputs _gameInputs;
         readonly JudgeService _judgeService;
+        readonly JudgeView _judgeView;
 
-        public JudgePresenter(JudgeService judgeService)
+        public JudgePresenter(JudgeService judgeService, JudgeView judgeView)
         {
             _judgeService = judgeService;
+            _judgeView = judgeView;
             
             _gameInputs = new GameInputs();
         }
@@ -29,7 +32,9 @@ namespace Judge
 
         void OnJudge(InputAction.CallbackContext context)
         {
-            _judgeService.JudgeNote();
+            string judgeLabel = _judgeService.JudgeNote();
+            Debug.Log(judgeLabel);
+            _judgeView.UpdateJudgeText(judgeLabel);
         }
     }
 }

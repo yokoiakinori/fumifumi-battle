@@ -19,7 +19,7 @@ namespace Judge
                 {3, new JudgementTable("不可", 90)},
             };
         }
-        public void JudgeNote()
+        public string JudgeNote()
         {
             int absdistance = Mathf.Abs(_notesService.GetFirstJudgementDistance());
             int judgementTableIndex = 1;
@@ -28,7 +28,8 @@ namespace Judge
             {
                 judgementTableIndex++;
             }
-            Debug.Log("判定: "+_judgementTable[judgementTableIndex].label);
+
+            return _judgementTable[judgementTableIndex].label;
         }
     }
 
