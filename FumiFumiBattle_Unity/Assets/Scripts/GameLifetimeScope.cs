@@ -1,6 +1,7 @@
 using GameInput;
 using Judge;
 using Note;
+using Score;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VContainer;
@@ -34,5 +35,8 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<JudgeService>(Lifetime.Singleton);
         builder.RegisterEntryPoint<JudgePresenter>();
         builder.RegisterComponent(judgeView);
+        
+        // Score
+        builder.Register<ScoreService>(Lifetime.Singleton);
     }
 }

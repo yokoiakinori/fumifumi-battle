@@ -1,5 +1,6 @@
 using GameInput;
 using Note;
+using Score;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
@@ -10,11 +11,14 @@ namespace Judge
     {
         readonly GameInputs _gameInputs;
         readonly JudgeService _judgeService;
+        readonly ScoreService _scoreService;
         readonly JudgeView _judgeView;
 
-        public JudgePresenter(JudgeService judgeService, JudgeView judgeView)
+        public JudgePresenter(JudgeService judgeService, ScoreService scoreService, JudgeView judgeView)
         {
             _judgeService = judgeService;
+            _scoreService = scoreService;
+            
             _judgeView = judgeView;
             
             _gameInputs = new GameInputs();
@@ -32,9 +36,9 @@ namespace Judge
 
         void OnJudge(InputAction.CallbackContext context)
         {
-            string judgeLabel = _judgeService.JudgeNote();
-            Debug.Log(judgeLabel);
-            _judgeView.UpdateJudgeText(judgeLabel);
+            JudgementTable judgementTable = _judgeService.JudgeNote();
+            _judgeView.UpdateJudgeText(judgementTable.label);
+            _scoreService.CalculateScore(judgementTable.key);
         }
     }
 }
