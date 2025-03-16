@@ -11,13 +11,13 @@ namespace Judge
     {
         readonly GameInputs _gameInputs;
         readonly JudgeService _judgeService;
-        readonly ScoreService _scoreService;
+        readonly ScorePresenter _scorePresenter;
         readonly JudgeView _judgeView;
 
-        public JudgePresenter(JudgeService judgeService, ScoreService scoreService, JudgeView judgeView)
+        public JudgePresenter(JudgeService judgeService, ScorePresenter scorePresenter, JudgeView judgeView)
         {
             _judgeService = judgeService;
-            _scoreService = scoreService;
+            _scorePresenter = scorePresenter;
             
             _judgeView = judgeView;
             
@@ -38,7 +38,7 @@ namespace Judge
         {
             JudgementTable judgementTable = _judgeService.JudgeNote();
             _judgeView.UpdateJudgeText(judgementTable.label);
-            _scoreService.CalculateScore(judgementTable.key);
+            _scorePresenter.OnUpdateScore(judgementTable.key);
         }
     }
 }
