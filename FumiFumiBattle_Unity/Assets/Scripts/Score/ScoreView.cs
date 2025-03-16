@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Score
 {
     public class ScoreView : MonoBehaviour
     {
         public TextMeshProUGUI scoreText;
+        public TextMeshProUGUI comboText;
         
-        public void UpdateScore(int scoreValue)
+        public void UpdateScore(float scoreValue)
         {
-            scoreText.text = "現在のスコア: "+scoreValue;
+            scoreText.text = "現在のスコア : "+scoreValue;
+        }
+        
+        public void UpdateCombo(int comboValue)
+        {
+            comboText.text = "現在のコンボ : "+comboValue;
         }
     }
 }

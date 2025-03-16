@@ -16,8 +16,10 @@ namespace Score
         public void OnUpdateScore(int judgementKey)
         {
             _scoreService.CalculateScore(judgementKey);
-            int score = _scoreService.GetScore();
+            float score = _scoreService.GetScore();
+            int comboCount = _scoreService.GetComboCount();
             _scoreView.UpdateScore(score);
+            _scoreView.UpdateCombo(comboCount);
         }
     }
 }
