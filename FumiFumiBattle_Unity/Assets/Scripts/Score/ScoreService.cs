@@ -45,6 +45,10 @@ namespace Score
             {
                 _comboCount++;
             }
+            else
+            {
+                _comboCount = 0;
+            }
         }
 
         private float ReviseScore(int score)
